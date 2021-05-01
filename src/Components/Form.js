@@ -1,5 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {BrowserRouter, Link,Route} from 'react-router-dom';
+import Router from './Router';
+//import SearchPage from './SearchPage'
+//import Photos from './Photos'
 
 class Form extends React.Component {
   state = {
@@ -21,12 +24,21 @@ class Form extends React.Component {
           placeholder="Search images..."
           autoComplete="off"
         />
-
+        <BrowserRouter>
+        <nav>
         <Link to={`/search/${this.state.value}`}>
           <button onClick={this.props.onSubmit} style={{display: 'none'}}>
             Search Button
           </button>
         </Link>
+        </nav>
+        <Route
+        path={`/search/${this.state.value}`}
+                    component={Router}
+                    exact
+        />
+        </BrowserRouter>
+
       </form>
     );
   }
